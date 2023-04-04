@@ -1,8 +1,8 @@
 import './app.css';
 import React from 'react';
-import CardList from './CardList';
-import Scroll from './Scroll';
-import SearchBox from './SearchBox';
+import CardList from '../Components/CardList';
+import Scroll from '../Components/Scroll';
+import SearchBox from '../Components/SearchBox';
 
 class App extends React.Component {
   constructor() {
@@ -21,8 +21,9 @@ class App extends React.Component {
       .then(users => this.setState({ robots: users }))
   }
   render() {
-    const filteredRobots = this.state.robots.filter(robot => {
-      return robot.name.toLowerCase().includes(this.state.searchfield.toLowerCase())
+    const { robots, searchfield } = this.state
+    const filteredRobots = robots.filter(robot => {
+      return robot.name.toLowerCase().includes(searchfield.toLowerCase())
     })
     return (
       <div className='tc' >
